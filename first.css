@@ -1,0 +1,132 @@
+
+.log1
+{
+	color:red;
+	height:400px;
+	width:400px;
+	background-color:red;
+}
+
+
+
+
+html,body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+canvas {
+  border: 1px soild black;
+}
+button{
+  display: inline-block;
+  padding: .3em;
+  font-family: 'Megrim', cursive;
+  position:absolute;
+  top: 50px;
+  right:10px ;
+  user-select: none;
+  transform: translate(-50%,-50%);
+  color: rgba(255,255,255,.4);
+  border: .075em solid rgba(255,255,255,.1);
+  box-shadow:0px 0px 50px rgb(255,255,255,0.5);
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: rgb(0,0,255,0.6);
+  border: none;
+  border-radius: 15px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 15px;
+}
+.button:active {
+  background-color: red;
+  box-shadow: 0 5px #666;
+}
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Style the navigation bar */
+.navbar {
+	position : absolute;
+	top : 30px;
+	left : 25%;
+	width: 55%;
+	background-color: rgb(0,0,255,0.3);
+	overflow: auto;
+	border: 1px solid black;
+	border-radius: 25px;
+	box-shadow:0px 0px 50px rgb(255,255,255,0.6);
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: blue;
+}
+.navbar  a:hover.logout {
+  background-color: red;
+}
+
+/* Current/active navbar link */
+.active {
+  background-color: #4CAF50;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+.
