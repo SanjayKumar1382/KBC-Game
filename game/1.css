@@ -1,0 +1,110 @@
+#time
+{
+	color:white;
+	width:120px;
+	height:120px;
+	background-color:rgb(158, 4, 163);
+	border-radius:60px;
+	position:absolute;
+	left:45%;
+	z-index:1;
+	top:8%;
+	text-align:center;
+	font-size:60px;
+	vertical-align: middle;
+	line-height: 120px;
+	box-shadow:0px 0px 50px rgb(255,255,255,0.9);
+	border:solid black 1px;
+}
+#loding
+{
+	z-index:1;
+	width:190px;
+	height:190px;
+	position:absolute;
+	left:42.5%;
+	top:2.5%;
+	
+}
+.option
+{
+	color:white;
+	display:block;
+	position:absolute;
+	padding:10px;
+	min-height:15px;
+	width:250px;
+	background-color:rgb(158, 4, 163);
+	border-radius:12px;
+}
+.container
+{
+	box-shadow:0px 0px 50px rgb(255,255,255,0.9);
+	color:white;
+	border-radius:12px;
+	background-image:linear-gradient(rgb(22,135,221),rgb(15,42,153));
+	width:50%;
+	min-height:50%;
+	position:absolute;
+	left:25%;
+	top:25%;
+	border:double rgb(8, 163, 206) 5px;
+}
+.rscontainer
+{
+	text-align:center;
+	font-weight:bold;
+	box-shadow:0px 0px 50px rgb(255,255,255,0.9);
+	color:white;
+	border-radius:12px;
+	background-image:linear-gradient(rgb(22,135,221),rgb(15,42,153));
+	width:15%;
+	min-height:50%;
+	position:absolute;
+	left:80%;
+	top:15%;
+	border:double rgb(8, 163, 206) 5px;
+}
+.rscontainer p
+{
+	height:20px;
+	weight:100%;
+	border-radius:40%;
+}
+.question
+{
+	color:white;
+	border-radius:12px;
+	position:absolute;
+	left:8%;
+	top:10%;
+	padding:10px;
+	min-height:20px;
+	width:80%;
+	background-color:rgb(158, 4, 163);
+}
+.extra{
+	color:white;
+	display:block;
+	position:absolute;
+	left:10%;
+	padding:10px;
+	min-height:15px;
+	width:80%;
+	background-color:rgb(158, 4, 163);
+	border-radius:12px;	
+}
+.exit
+{
+	font-size:30px;
+	font-weight:bold;
+	color:white;
+	border-radius:12px;	
+	position:absolute;
+	left:0%;
+	background-color:red;
+	top:110%;
+	width:100%;
+	height:20%;
+	box-shadow:0px 0px 50px rgb(255,255,255,0.9);
+}

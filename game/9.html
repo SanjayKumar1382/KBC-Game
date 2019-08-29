@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<?php session_start(); ?>
+<html>	
+	<head>
+		<link href="1.css"  rel="stylesheet" >
+		<link href="extra.css"  rel="stylesheet" >
+		<script src="jquery.js"></script>
+		<script src="extra.js"></script>
+		<script>
+						$(document).ready(function(){
+							$('.extra').click(function(){
+								var clickBtnValue = $(this).val();
+								var ajaxurl = 'ajax.php';
+								var data =  {'action': clickBtnValue};
+								$.post(ajaxurl, data, function (response) {
+									// Response div goes here.
+								});
+							});
+
+						});
+		</script>
+		<?php
+			$conn1 = mysql_connect("localhost","root","");
+			if(!$conn1)
+				die("error".mysql_error());
+				$_SESSION['win']=640000;
+			$cr1 = mysql_select_db("ques",$conn1);
+			mysql_set_charset('utf8', $conn1);
+			header('Content-Type: text/html; charset=utf-8');
+			$no = mt_rand(1,10);
+			$sql = "select * from ques9 where no = "."$no" ;
+			$qu = mysql_query( $sql , $conn1);
+			if(!$qu)
+				die("error".mysql_error());
+			while($row= mysql_fetch_array($qu , MYSQL_ASSOC))
+			{	$ques = $row['ques'];
+				$op1 = $row['op1'];
+				$op2 = $row['op2'];
+				$op3 = $row['op3'];
+				$op4 = $row['op4'];
+				$ans = $row['ans'];
+			}
+		?>	
+	<head>
+	<body>
+		<audio id="audio" src="music/correct.mp3" ></audio>
+		<audio id="audio1" src="music/wrong.mp3" ></audio>
+		<audio id="audio2" src="music/timeout.mp3" ></audio>
+		<audio id="audio3" src="music/tictoc.mp3" ></audio>
+		<img src="g.svg" style="position:absolute;left:23%;width:300px;top:-5%;">
+		<img src="g.svg" style="position:absolute;left:55%;width:300px;top:-5%;transform:scaleX(-1);">	
+	<div class="rscontainer" style="left:4%">
+	<?php
+	//echo $_SESSION['insert1'];
+	if(!isset($_SESSION['insert1']))
+		echo	'<input type="submit" class="extra" id="extra1" style="top:10%;" value="Audience-poll"  />';
+	else
+		echo    '<p class="extra" id="extra1" style="top:8%;pointer-events:none;background-color:red;" >Audience-poll used</p>';
+	if(!isset($_SESSION['insert2']))
+		echo	'<input type="submit" class="extra" id="extra2" style="top:33%;" value="Phone-Friend" />';
+	else
+		echo    '<p class="extra" id="extra2" style="top:31%;pointer-events:none;background-color:red;" >Phone-Friend used</p>';
+	if(!isset($_SESSION['insert3']))
+		echo	'<input type="submit" class="extra" id="extra3" style="top:56%;" value="Expert"  />';
+	else
+		echo    '<p class="extra" id="extra3" style="top:54%;pointer-events:none;background-color:red;" >Expert used</p>';
+	if(!isset($_SESSION['insert4']))
+		echo	'<input type="submit" class="extra" id="extra4" style="top:79%;" value="50-50"  />';
+	else
+		echo    '<p class="extra" id="extra4" style="top:76%;pointer-events:none;background-color:red;" >50-50 used</p>';
+	?>
+	<button type="button" class="exit" onclick="exit()">Exit</button>
+	
+	</div>
+		<div id="time">59</div>
+		<div class="container">
+			<div class="question">Q. 9  <?php echo " ".$ques; ?></div>
+				<button type="button"  class="option" style="left:8%;top:40%;" onclick="myFunction('A',0)" >(A) <?php echo $op1; ?> </button> 
+				<button type="button"  class="option" style="right:8%;top:40%;" onclick="myFunction('B',1)">(B)  <?php echo $op2; ?> </button>
+				<button type="button"  class="option" style="left:8%;top:70%" onclick="myFunction('C',2)">(C)  <?php echo $op3; ?> </button>
+				<button type="button"  class="option" style="right:8%;top:70%" onclick="myFunction('D',3)">(D) <?php echo $op4; ?> </button>
+				<button type="button"  class="option" style=" left:30%;top:110%;box-shadow:0px 0px 50px rgb(255,255,255,0.9);" onclick="myFunction1()">  BEST OF LUCK... </button>
+		</div>
+		
+		<div class="rscontainer">
+			<p id="13" style="color:yellow;">Rs. 5 Crores</p>
+			<p id="12">Rs. 1 Crores</p>
+			<p id="11">Rs. 50,00,000</p>
+			<p id="10">Rs. 25,00,000</p>
+			<p id="9" style="background-color:green;">Rs. 12,50,000</p>
+			<p id="8">Rs. 6,40,000</p>
+			<p id="7">Rs. 3,20,000</p>
+			<p id="6">Rs. 1,60,000</p>
+			<p id="5">Rs. 80,000</p>
+			<p id="4">Rs. 40,000</p>
+			<p id="3" style="color:red;">Rs. 20,000</p>
+			<p id="2" style="color:red;">Rs. 10,000</p>
+			<p id="1" style="color:red;">Rs. 5,000</p>
+		</div>
+	
+	
+												<!-- The Modal -->
+										<div id="myModal1" class="modal">
+										  <!-- Modal content -->
+										  <div class="modal-content" style="width:30%;height:40%;bottom:40%;">
+											<div class="modal-header">
+											  <span class="close1">&times;</span>
+											  <h2><i>Audience-poll</i></h2>
+											</div>
+											<div class="modal-body" style="height:35%;font-size:20px;text-align:center;">
+											<?php 
+												if($ans=='A')
+													echo '<p> A = '.mt_rand(70,100).' % </p>';
+												else 
+													echo '<p> A = '.mt_rand(40,80).' % </p>';
+												if($ans=='B')
+													echo '<p> B = '.mt_rand(70,100).' % </p>';
+												else 
+													echo '<p> B = '.mt_rand(40,80).' % </p>';
+												if($ans=='C')
+													echo '<p> C = '.mt_rand(70,100).' % </p>';
+												else 
+													echo '<p> C = '.mt_rand(40,80).' % </p>';
+												if($ans=='D')
+													echo '<p> D = '.mt_rand(70,100).' % </p>';
+												else 
+													echo '<p> D = '.mt_rand(40,80).' % </p>';
+											?>
+											</div>
+										  </div>
+										</div>
+										
+										
+										<div id="myModal2" class="modal">
+										  <!-- Modal content -->
+										  <div class="modal-content" >
+											<div class="modal-header">
+											  <span class="close2">&times;</span>
+											  <h2><i>Phone-Friend</i></h2>
+											</div>
+											<div class="modal-body"style="height:35%">
+											<?php
+												$temp = mt_rand(1,4);
+												if($temp==1||$temp==2||$temp==3)
+													echo '<p> Answere is = '.$ans.'</p>';
+												if($temp==4)
+												{
+													$temp1 = mt_rand(1,4);
+													if($temp1==1||$temp1==2)
+														echo '<p> Answere is = '.$ans.'</p>';
+													if($temp1==3||$temp1==4)
+													{
+														$temp2=mt_rand(1,4);
+														if($temp2==1)
+															echo '<p> Answere is = '.'A'.'</p>';
+														if($temp2==2)
+															echo '<p> Answere is = '.'B'.'</p>';
+														if($temp2==3)
+															echo '<p> Answere is = '.'C'.'</p>';
+														if($temp2==4)
+															echo '<p> Answere is = '.'D'.'</p>';
+													}
+												}
+											?>
+											</div>
+										  </div>
+										</div>
+	
+											<div id="myModal3" class="modal">
+										  <!-- Modal content -->
+										  <div class="modal-content" >
+											<div class="modal-header">
+											  <span class="close3">&times;</span>
+											  <h2><i>Expert</i></h2>
+											</div>
+											<div class="modal-body"style="height:35%">
+											<?php
+												$temp3 = mt_rand(1,4);
+												if($temp3==1||$temp3==2||$temp3==3)
+													echo '<p> Answere is = '.$ans.'</p>';
+												if($temp3==4)
+												{
+													$temp4 = mt_rand(1,4);
+													if($temp4==1||$temp4==2||$temp4==3)
+														echo '<p> Answere is = '.$ans.'</p>';
+													if($temp4==4)
+													{
+														$temp5=mt_rand(1,4);
+														if($temp5==1)
+															echo '<p> Answere is = '.'A'.'</p>';
+														if($temp5==2)
+															echo '<p> Answere is = '.'B'.'</p>';
+														if($temp5==3)
+															echo '<p> Answere is = '.'C'.'</p>';
+														if($temp5==4)
+															echo '<p> Answere is = '.'D'.'</p>';
+													}
+												}
+											?>
+											</div>
+										  </div>
+										</div>
+
+										
+										<div id="myModal4" class="modal">
+										  <!-- Modal content -->
+										  <div class="modal-content" >
+											<div class="modal-header">
+											  <span class="close4">&times;</span>
+											  <h2><i>50-50</i></h2>
+											</div>
+											<div class="modal-body"style="height:35%">
+											<?php
+												$temp6 = mt_rand(1,3);
+												$ans2='';
+												if($ans=='A'){
+													if($temp6==1)
+														$ans2='B';
+													if($temp6==2)
+														$ans2='C';
+													if($temp6==3)
+														$ans2='D';
+												}
+												if($ans=='B'){
+													if($temp6==1)
+														$ans2='A';
+													if($temp6==2)
+														$ans2='C';
+													if($temp6==3)
+														$ans2='D';
+												}
+												if($ans=='C'){
+													if($temp6==1)
+														$ans2='A';
+													if($temp6==2)
+														$ans2='B';
+													if($temp6==3)
+														$ans2='D';
+												}
+												if($ans=='D'){
+													if($temp6==1)
+														$ans2='A';
+													if($temp6==2)
+														$ans2='B';
+													if($temp6==3)
+														$ans2='C';
+												}
+												$temp7=mt_rand(0,1);
+												if($temp7==0)
+													echo '<p> Answere is between<br/>'.$ans.' & '.$ans2;
+												else
+													echo '<p> Answere is between<br/>'.$ans2.' & '.$ans;
+											?>
+											</div>
+										  </div>
+										</div>										
+										
+	<body background="kbc1.jpg">
+	<script>
+	var check=0;	// for prevent more than one click..
+	var correct=0; // for check ans correct or not for next button, quit or next question
+	var rtime=58;  // for set timer
+	var myvar=0;	// for stop time...
+	var audio3=0;
+	var time=0;
+	var audio7=0;
+	function myFunction(value,no) {
+	audio7.pause();
+		if(check==1)
+			return;
+		
+		var x = document.getElementsByClassName("option")[no];
+		var y = '<?php echo $ans;?>';
+	  	if (value===y) {
+			correct=1;
+			var audio = document.getElementById("audio");
+			audio.play();
+			x.style.backgroundColor = "green";
+			var next = document.getElementsByClassName("option")[4];
+			next.style.display="block";
+			next.innerHTML="Congratulation!</br>Next Question...";
+			document.cookie="cvalue=100";
+	  	} else {
+			correct=2;
+	    	x.style.backgroundColor = "red";
+			var audio = document.getElementById("audio1");
+			audio.play();
+			var next = document.getElementsByClassName("option")[4];
+			next.style.display="block";
+			next.innerHTML="Bad luck!</br>Click for</br> <B>Quit</B>";
+	  	}
+		clearInterval(myVar);
+		check=1;
+		audio3.pause();
+	}
+	function myFunction1() {
+		if(correct==0)
+			return;
+		if(correct==1){
+			window.open("10.html","_self");
+		}
+		else{
+			window.open("quit.html","_self");
+		}
+	}
+	function exit()
+	{
+		window.open("exit.html","_self");
+	}
+	/*window.onload = function()
+	{
+		time= document.getElementById("time");
+		myVar = setInterval(Timer, 1000,time);
+	}*/
+	function b()
+	{
+		var extra0 = document.getElementsByClassName("extra")[0]; 
+		extra0.style.display = "none";
+	}
+	var timestoper=4;
+	function Timer(time)
+	{
+		if(timestoper>0)
+		{
+			rtime=rtime+1;
+			timestoper=timestoper-1;
+		}
+		time.innerHTML= rtime;
+		rtime = rtime -1 ;
+		if(rtime<0){
+			//var audio3 = new Audio("0.mp3");
+			//document.write(audio);
+			audio3.pause();
+			var audio2 = document.getElementById("audio2");
+			audio2.play();
+			clearInterval(myVar);
+			time.innerHTML= "<small><small><small>timeout</small></small></small>";
+			time.style.backgroundColor="red";
+			check=1;
+			var next = document.getElementsByClassName("option")[4];
+			next.style.display="block";
+			next.innerHTML="timeout!</br>Click for</br> <B>Quit</B>";
+			next.style.backgroundColor="red";
+			correct=2;
+		}
+		if(timestoper==0)
+		{
+			timestoper=timestoper-1;
+			audio3 = document.getElementById("audio3");
+			audio3.play();
+		}
+
+	}
+	</script>
+</html>

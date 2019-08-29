@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+		<head>  
+				<script src="jquery.js"></script>
+				<script>
+						$(document).ready(function(){
+							$('.extra').click(function(){
+								var clickBtnValue = $(this).val();
+								var ajaxurl = 'ajax.php';
+								var data =  {'action': clickBtnValue};
+								$.post(ajaxurl, data, function (response) {
+									// Response div goes here.
+								});
+							});
+
+						});
+						function extra1()
+						{
+								var next = document.getElementById("extra1");
+								next.style.display="none";
+						}
+						function extra2()
+						{
+								var next = document.getElementById("extra2");
+								next.style.display="none";
+						}
+						function extra3()
+						{
+								var next = document.getElementById("extra3");
+								next.style.display="none";
+						}
+						function extra4()
+						{
+								var next = document.getElementById("extra4");
+								next.style.display="none";
+						}
+				</script>
+		</head>
+	<body>
+	<?php
+	session_start();
+	//echo $_SESSION['insert1'];
+	if(!isset($_SESSION['insert1']))
+		echo	'<input type="submit" class="extra" id="extra1" name="insert" value="insert1" onclick="extra1()" />';
+	if(!isset($_SESSION['insert2']))
+		echo	'<input type="submit" class="extra" id="extra2" name="insert" value="insert2" onclick="extra2()" />';
+	if(!isset($_SESSION['insert3']))
+		echo	'<input type="submit" class="extra" id="extra3" name="insert" value="insert3" onclick="extra3()" />';
+	if(!isset($_SESSION['insert4']))
+		echo	'<input type="submit" class="extra" id="extra4" name="insert" value="insert4" onclick="extra4()" />';
+	?>
+	</body>
+</html>	
